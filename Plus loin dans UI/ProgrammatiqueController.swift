@@ -13,6 +13,7 @@ class ProgrammatiqueController: UIViewController {
     var monPremierUIView: UIView?
     var monPremierLabel: UILabel?
     var monPremierBouton: UIButton?
+    var maPremiereIV: UIImageView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,9 +44,24 @@ class ProgrammatiqueController: UIViewController {
         view.addSubview(monPremierBouton!)
         monPremierBouton?.addTarget(self, action: #selector(boutonAppuyer), for: .touchUpInside)
         
+        let largeur = view.frame.width - 60
+        let rectIV = CGRect(x: 30, y: (view.frame.height / 2) - (largeur / 2), width: largeur, height: largeur)
+        maPremiereIV = UIImageView(frame: rectIV)
+        maPremiereIV?.image = UIImage(named: "logo")
+        maPremiereIV?.contentMode = .scaleAspectFill
+        maPremiereIV?.clipsToBounds = true;
+        view.addSubview(maPremiereIV!)
+        view.sendSubviewToBack(maPremiereIV!)
+        
+        maPremiereIV?.isUserInteractionEnabled = true
+        maPremiereIV?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector?#selector(imageAppuyer)))
     }
     
     @objc func boutonAppuyer() {
+        print("tu as bien appuyé")
+    }
+    
+    @objc func imageaAppuyer(){
         print("tu as bien appuyé")
     }
 
