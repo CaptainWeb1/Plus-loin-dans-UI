@@ -12,6 +12,7 @@ class ProgrammatiqueController: UIViewController {
     
     var monPremierUIView: UIView?
     var monPremierLabel: UILabel?
+    var monPremierBouton: UIButton?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +31,22 @@ class ProgrammatiqueController: UIViewController {
         monPremierLabel?.font = UIFont(name: "Chalkduster", size: 20)
         monPremierLabel?.textAlignment = .center
         view.addSubview(monPremierLabel!)
+        
+        let rectDeMonBouton = CGRect(x: view.frame.width / 2 - 75, y: monPremierLabel!.frame.maxY + 20, width: 160, height: 40)
+        monPremierBouton = UIButton(frame: rectDeMonBouton)
+        monPremierBouton?.setTitle("Appuyer", for: UIControl.State.normal)
+        monPremierBouton?.tintColor = UIColor.red
+        monPremierBouton?.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        monPremierBouton?.backgroundColor = UIColor.black
+        monPremierBouton?.layer.borderColor = UIColor.white.cgColor
+        monPremierBouton?.layer.borderWidth = 2
+        view.addSubview(monPremierBouton!)
+        monPremierBouton?.addTarget(self, action: #selector(boutonAppuyer), for: .touchUpInside)
+        
     }
-
+    
+    @objc func boutonAppuyer() {
+        print("tu as bien appuyé")
+    }
 
 }
